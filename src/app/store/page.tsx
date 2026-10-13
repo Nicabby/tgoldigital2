@@ -90,8 +90,8 @@ export default function Store() {
             <div className="flex items-center space-x-2">
               <span className="text-2xl">🚚</span>
               <div>
-                <h3 className="font-semibold text-gray-800">Fast Shipping</h3>
-                <p className="text-sm text-gray-600">2-3 business days</p>
+                <h3 className="font-semibold text-gray-800">US Shipping</h3>
+                <p className="text-sm text-gray-600">3-6 business days</p>
               </div>
             </div>
             <div className="flex items-center space-x-2">
@@ -102,10 +102,10 @@ export default function Store() {
               </div>
             </div>
             <div className="flex items-center space-x-2">
-              <span className="text-2xl">💰</span>
+              <span className="text-2xl">🌎</span>
               <div>
-                <h3 className="font-semibold text-gray-800">Money Back</h3>
-                <p className="text-sm text-gray-600">30-day guarantee</p>
+                <h3 className="font-semibold text-gray-800">International Shipping</h3>
+                <p className="text-sm text-gray-600">10-14 business days</p>
               </div>
             </div>
           </div>
@@ -150,6 +150,14 @@ export default function Store() {
             </div>
           ))}
         </div>
+
+        <p className="text-center text-lg mb-12" style={{ color: '#555555' }}>
+          For more products, including our <strong>Threesome</strong> and <strong>Wet &apos;n Wild</strong> decks, visit{' '}
+          <a href="https://www.gameoflifestyle.com/shop" target="_blank" rel="noopener noreferrer"
+            className="font-semibold underline hover:opacity-70 transition-opacity" style={{ color: '#B9340B' }}>
+            gameoflifestyle.com/shop
+          </a>
+        </p>
 
         {/* Why Physical Cards */}
         <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl p-8 mb-12 border border-rose-300/20">
@@ -246,7 +254,7 @@ export default function Store() {
             
             <div>
               <h3 className="font-semibold text-lg mb-2">Do you offer international shipping?</h3>
-              <p className="text-gray-600">Currently we ship within the US and Canada. International shipping coming soon!</p>
+              <p className="text-gray-600">Yes! US orders arrive in 3-6 business days, and international orders arrive in 10-14 business days.</p>
             </div>
           </div>
         </div>

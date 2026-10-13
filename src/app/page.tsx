@@ -5,6 +5,7 @@ import { useState } from 'react';
 import TGOLBrandLogo from '@/components/TGOLBrandLogo';
 
 const WEBSITE_URL = 'https://gameoflifestyle.com';
+const SHOP_URL = 'https://www.gameoflifestyle.com/shop';
 const AVENIR = 'Avenir, Avenir Next, Nunito, sans-serif';
 const FUTURA = 'Futura Std Bold Condensed, Futura, Jost, Arial Black, sans-serif';
 
@@ -31,31 +32,7 @@ const PREMIUM_DECKS: PremiumDeck[] = [
     badgeColor: '#1a2d52',
     borderColor: '#274070',   // DARK CORNFLOWER BLUE — Extra Hot brand colour
     digitalAvailable: true,
-    storeUrl: `${WEBSITE_URL}/store`,
-    digitalUrl: `${WEBSITE_URL}/unlock`,
-  },
-  {
-    id: 'threesome',
-    emoji: '🔱',
-    name: 'Threesome',
-    tagline: "Three's company",
-    description: 'Cards designed specifically for three players. Intimate, adventurous, and perfectly balanced for a trio.',
-    badgeColor: '#a85218',
-    borderColor: '#DE6F20',   // COCOA ORANGE — Threesome brand colour
-    digitalAvailable: false,
-    storeUrl: `${WEBSITE_URL}/store`,
-    digitalUrl: `${WEBSITE_URL}/unlock`,
-  },
-  {
-    id: 'wet-n-wild',
-    emoji: '💦',
-    name: "Wet 'n Wild",
-    tagline: 'Make a splash',
-    description: 'Water-themed cards for the hot tub, pool, or shower. A whole new element to your play.',
-    badgeColor: '#022d56',
-    borderColor: '#034078',   // INDIGO DYE — Wet 'n Wild brand colour
-    digitalAvailable: false,
-    storeUrl: `${WEBSITE_URL}/store`,
+    storeUrl: '/store',
     digitalUrl: `${WEBSITE_URL}/unlock`,
   },
 ];
@@ -186,7 +163,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid gap-6 max-w-md mx-auto">
             {PREMIUM_DECKS.map(deck => (
               <div key={deck.id} className="bg-white rounded-2xl shadow-xl overflow-hidden"
                 style={{ border: `3px solid ${deck.borderColor}` }}>
@@ -209,11 +186,11 @@ export default function Home() {
                   </p>
 
                   <div className="space-y-2">
-                    <a href={deck.storeUrl} target="_blank" rel="noopener noreferrer"
+                    <Link href={deck.storeUrl}
                       className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl font-semibold text-sm transition-opacity hover:opacity-90"
                       style={{ backgroundColor: deck.borderColor, color: '#fff', fontFamily: FUTURA }}>
                       🛍️ Buy Physical Cards
-                    </a>
+                    </Link>
 
                     {deck.digitalAvailable ? (
                       <a href={deck.digitalUrl} target="_blank" rel="noopener noreferrer"
@@ -234,6 +211,14 @@ export default function Home() {
               </div>
             ))}
           </div>
+
+          <p className="text-center mt-10 mb-4" style={{ color: '#555555', fontFamily: AVENIR }}>
+            Looking for more? Our <strong>Threesome</strong> and <strong>Wet &apos;n Wild</strong> decks and other products are available at{' '}
+            <a href={SHOP_URL} target="_blank" rel="noopener noreferrer"
+              className="font-semibold underline hover:opacity-70 transition-opacity" style={{ color: '#B9340B' }}>
+              gameoflifestyle.com/shop
+            </a>
+          </p>
         </div>
 
       </main>
