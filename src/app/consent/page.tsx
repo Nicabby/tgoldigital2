@@ -2,9 +2,8 @@
 // v2 - includes music picker
 
 import { useRouter } from 'next/navigation'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import TGOLBrandLogo from '@/components/TGOLBrandLogo'
-import categoriesData from '@/data/categories.json'
 import { MUSIC_TRACKS } from '@/data/musicTracks'
 import { useGame } from '@/context/GameContext'
 import { AudioManager } from '@/utils/audioManager'
@@ -24,8 +23,6 @@ export default function Consent() {
   const router = useRouter()
   const {
     players,
-    selectedCategories,
-    setSelectedCategories,
     globalSpiceLevel,
     setGlobalSpiceLevel,
     consentAgreed,
@@ -33,29 +30,21 @@ export default function Consent() {
   } = useGame()
 
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null)
-  const amRef = useRef(AudioManager.getInstance())
-
-  const toggleCategory = (category: string) => {
-    setSelectedCategories(
-      selectedCategories.includes(category)
-        ? selectedCategories.filter(c => c !== category)
-        : [...selectedCategories, category]
-    )
-  }
+  const am = AudioManager.getInstance()
 
   const handleTrackSelect = (trackId: string | null) => {
     setSelectedTrackId(trackId)
     if (trackId === null) {
-      amRef.current.stopMusic()
+      am.stopMusic()
     } else {
       const track = MUSIC_TRACKS.find(t => t.id === trackId)
       if (track) {
-        amRef.current.startMusic(track.file, track.id)
+        am.startMusic(track.file, track.id)
       }
     }
   }
 
-  const canProceed = consentAgreed && selectedCategories.length > 0
+  const canProceed = consentAgreed
 
   if (players.length === 0) {
     return (
@@ -145,7 +134,7 @@ export default function Consent() {
               🌶️ GROUP SPICE LEVEL
             </h2>
             <p className="text-lg mb-6" style={{ color: '#555555', fontFamily: AVENIR }}>
-              Set the maximum spice level for this session. Individual player preferences are always respected — no one gets a card above their own limit.
+              Set the maximum spice level for this session. All cards will stay at or below this level.
             </p>
             <label className="block text-lg mb-3"
               style={{ color: '#555555', fontFamily: AVENIR, fontWeight: '600' }}>
@@ -167,66 +156,9 @@ export default function Consent() {
             </div>
           </div>
 
-          {/* Category Preferences */}
-          <div className="bg-white rounded-2xl shadow-2xl p-10 border-4 border-tgol-red">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-3xl font-futura-bold tracking-wide" style={{ color: '#B9340B' }}>
-                💕 ACTIVITY CATEGORIES
-              </h2>
-              <div className="flex gap-3">
-                <button onClick={() => setSelectedCategories([...categoriesData])}
-                  className="text-sm px-3 py-1 rounded-full border-2 hover:opacity-80 transition-opacity"
-                  style={{ borderColor: '#498379', color: '#498379', fontFamily: AVENIR }}>
-                  Select All
-                </button>
-                <button onClick={() => setSelectedCategories([])}
-                  className="text-sm px-3 py-1 rounded-full border-2 hover:opacity-80 transition-opacity"
-                  style={{ borderColor: '#B9340B', color: '#B9340B', fontFamily: AVENIR }}>
-                  Clear All
-                </button>
-              </div>
-            </div>
-            <p className="text-lg mb-6" style={{ color: '#555555', fontFamily: AVENIR }}>
-              Select the types of activities you want included. Cards are filtered to match your choices.
-            </p>
-            <div className="grid md:grid-cols-3 gap-3">
-              {categoriesData.map((category) => (
-                <button key={category} onClick={() => toggleCategory(category)}
-                  className="p-4 rounded-xl border-2 transition-all text-left hover:opacity-90"
-                  style={{
-                    borderColor: selectedCategories.includes(category) ? '#B9340B' : '#d1d5db',
-                    backgroundColor: selectedCategories.includes(category) ? '#FDE8E2' : '#FCF9E8',
-                  }}>
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium text-lg"
-                      style={{
-                        color: selectedCategories.includes(category) ? '#B9340B' : '#555555',
-                        fontFamily: AVENIR,
-                      }}>
-                      {category}
-                    </span>
-                    <span className="w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0"
-                      style={{
-                        backgroundColor: selectedCategories.includes(category) ? '#B9340B' : 'transparent',
-                        borderColor: selectedCategories.includes(category) ? '#B9340B' : '#d1d5db',
-                      }}>
-                      {selectedCategories.includes(category) && (
-                        <span className="text-white text-xs font-bold">✓</span>
-                      )}
-                    </span>
-                  </div>
-                </button>
-              ))}
-            </div>
-            {selectedCategories.length > 0 && (
-              <p className="mt-4 text-sm" style={{ color: '#498379', fontFamily: AVENIR }}>
-                {selectedCategories.length} of {categoriesData.length} categories selected
-              </p>
-            )}
-          </div>
-
           {/* Music Picker */}
-          <div style={{ background: '#E8F5F3', border: '6px solid #498379', borderRadius: '16px', padding: '40px', marginTop: '32px' }}>
+          <div className="bg-white rounded-2xl shadow-2xl p-10 border-4"
+            style={{ borderColor: '#498379' }}>
             <h2 className="text-3xl font-futura-bold tracking-wide mb-3 text-center" style={{ color: '#498379' }}>
               🎵 CHOOSE YOUR VIBE
             </h2>
@@ -297,8 +229,6 @@ export default function Consent() {
               }}>
               {!consentAgreed
                 ? 'Please agree to the guidelines above'
-                : selectedCategories.length === 0
-                ? 'Select at least one category'
                 : 'START THE GAME 🎲'}
             </button>
           </div>

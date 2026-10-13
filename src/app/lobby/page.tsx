@@ -16,7 +16,6 @@ export default function Lobby() {
     gender: 'female' as 'male' | 'female' | 'other',
     avatar: avatarsData[0].id,
     partner: '',
-    spiceLevel: 1,
   })
 
   const addPlayer = () => {
@@ -27,10 +26,9 @@ export default function Lobby() {
         gender: currentPlayer.gender,
         avatar: currentPlayer.avatar,
         partner: currentPlayer.partner || undefined,
-        spiceLevel: currentPlayer.spiceLevel,
       }
       setPlayers([...players, newPlayer])
-      setCurrentPlayer({ name: '', gender: 'female', avatar: avatarsData[0].id, partner: '', spiceLevel: 1 })
+      setCurrentPlayer({ name: '', gender: 'female', avatar: avatarsData[0].id, partner: '' })
     }
   }
 
@@ -142,22 +140,6 @@ export default function Lobby() {
                 </div>
               </div>
 
-              <div>
-                <label className="block text-lg mb-3"
-                  style={{ color: '#555555', fontFamily: 'Avenir, Avenir Next, Nunito, sans-serif', fontWeight: '500' }}>
-                  Spice Level: L{currentPlayer.spiceLevel}
-                </label>
-                <input type="range" min="1" max="5" value={currentPlayer.spiceLevel}
-                  onChange={(e) => setCurrentPlayer({ ...currentPlayer, spiceLevel: parseInt(e.target.value) })}
-                  className="w-full h-3 appearance-none cursor-pointer"
-                  style={{ background: 'linear-gradient(to right, #498379 0%, #B9340B 100%)', borderRadius: '6px' }}
-                />
-                <div className="flex justify-between text-sm mt-2"
-                  style={{ color: '#555555', fontFamily: 'Avenir, Avenir Next, Nunito, sans-serif' }}>
-                  <span>MILD</span><span>WARM</span><span>SPICY</span><span>HOT</span><span>EXTRA HOT</span>
-                </div>
-              </div>
-
               {players.length > 0 && (
                 <div>
                   <label className="block text-lg mb-3"
@@ -226,7 +208,7 @@ export default function Lobby() {
                             {player.name}
                           </h3>
                           <p style={{ color: '#555555', fontFamily: 'Avenir, Avenir Next, Nunito, sans-serif' }}>
-                            {avatar?.name} · L{player.spiceLevel}
+                            {avatar?.name}
                             {partner && ` · Partner: ${partner.name}`}
                           </p>
                         </div>

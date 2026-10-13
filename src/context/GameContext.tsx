@@ -10,7 +10,6 @@ export interface Player {
   gender: 'male' | 'female' | 'other'
   avatar: string
   partner?: string
-  spiceLevel: number
 }
 
 export interface GameStats {

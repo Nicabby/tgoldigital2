@@ -234,7 +234,7 @@ export default function Game() {
   const currentPlayer = players[currentPlayerIndex % Math.max(players.length, 1)]
 
   const filterCards = useCallback((pool: Card[], usedCardIds: string[], level: number): Card[] => {
-    const playerMax = currentPlayer ? Math.min(currentPlayer.spiceLevel, globalSpiceLevel) : globalSpiceLevel
+    const playerMax = globalSpiceLevel
     let filtered = pool.filter(c => !usedCardIds.includes(c.id))
     if (level > 2 && selectedCategories.length > 0) {
       filtered = filtered.filter(c => c.tags.some(t => selectedCategories.includes(t)))
@@ -488,7 +488,7 @@ export default function Game() {
                   {currentPlayer?.name}
                 </p>
                 <p className="text-xs mt-0.5" style={{ color: '#888', fontFamily: 'Avenir, Avenir Next, Nunito, sans-serif' }}>
-                  Spice L{currentPlayer?.spiceLevel}
+                  Spice L{globalSpiceLevel}
                 </p>
               </div>
             </div>
