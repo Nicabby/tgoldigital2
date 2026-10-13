@@ -5,31 +5,40 @@ import TGOLBrandLogo from '@/components/TGOLBrandLogo'
 
 const products = [
   {
-    id: 'starter-deck',
-    name: 'TGOL Starter Deck',
-    price: '$29.99',
-    description: 'Perfect for couples new to the game. Includes 100 cards across all spice levels.',
-    image: '/images/starter-deck.jpg',
-    features: ['100 Premium Cards', 'Levels 1-3', 'Couples Focused', 'Discreet Packaging'],
-    wixUrl: '#' // Placeholder - PM will provide
+    id: 'ice-breaker-edition',
+    name: 'Ice Breaker Edition',
+    price: 'US$24.95',
+    description: 'Provocative questions that players take turns reading and answering, to build comfort and conversation before things get physical.',
+    image: '/images/ice-breaker-edition.jpg',
+    features: ['Question cards', 'For 2+ couples or an adult group', 'The perfect place to start'],
+    wixUrl: 'https://www.gameoflifestyle.com/product-page/ice-breaker-edition'
   },
   {
-    id: 'party-pack',
-    name: 'TGOL Party Pack',
-    price: '$49.99',
-    description: 'Designed for groups and parties. 200 cards with group dynamics and challenges.',
-    image: '/images/party-pack.jpg',
-    features: ['200 Premium Cards', 'All Levels 1-5', 'Group Activities', 'Party Instructions'],
-    wixUrl: '#' // Placeholder - PM will provide
+    id: 'hot-n-heavy-edition',
+    name: "Hot \u2019n Heavy Edition",
+    price: 'US$24.95',
+    description: 'Provocative action cards that players read aloud and act out, from mild teasing to more intense play.',
+    image: '/images/hot-n-heavy-edition.jpg',
+    features: ['50 playing cards', 'Three heat levels', 'For 2+ couples or an adult group'],
+    wixUrl: 'https://www.gameoflifestyle.com/product-page/hot-n-heavy-edition'
   },
   {
-    id: 'ultimate-collection',
-    name: 'TGOL Ultimate Collection',
-    price: '$89.99',
-    description: 'The complete TGOL experience. Every card, expansion packs, and premium accessories.',
-    image: '/images/ultimate-collection.jpg',
-    features: ['500+ Premium Cards', 'All Levels & Categories', 'Luxury Box', 'Bonus Accessories', 'Free Digital Access'],
-    wixUrl: '#' // Placeholder - PM will provide
+    id: 'extra-hot-vol-1',
+    name: 'Extra Hot Expansion Pack Vol 1',
+    price: 'US$12.95',
+    description: "A sizzling add-on for the Hot \u2019n Heavy Edition. Choose which cards to mix into your deck to set the intensity.",
+    image: '/images/extra-hot-vol-1.jpg',
+    features: ['20 playing cards', "Add-on for Hot \u2019n Heavy", 'Mix in at your comfort level'],
+    wixUrl: 'https://www.gameoflifestyle.com/product-page/hot-n-heavy-extra-hot-expansion-pack'
+  },
+  {
+    id: 'extra-hot-vol-2',
+    name: 'Extra Hot Expansion Pack Vol 2',
+    price: 'US$12.95',
+    description: "A blazing hot add-on for the Hot \u2019n Heavy Edition, with new cards for threesome and foursome play.",
+    image: '/images/extra-hot-vol-2.jpg',
+    features: ['20 new cards', 'Threesome & foursome play', "Add-on for Hot \u2019n Heavy"],
+    wixUrl: 'https://www.gameoflifestyle.com/product-page/hot-n-heavy-extra-hot-expansion-pack-vol-2'
   }
 ]
 
@@ -103,7 +112,7 @@ export default function Store() {
         </div>
 
         {/* Products Grid */}
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 xl:grid-cols-4 gap-8 mb-12">
           {products.map((product) => (
             <div key={product.id} className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border border-tgol-red/20 overflow-hidden hover:shadow-2xl transition-all">
               {/* Product Image Placeholder */}
@@ -132,7 +141,7 @@ export default function Store() {
                 </div>
                 
                 <button
-                  onClick={() => window.open(product.wixUrl, '_blank')}
+                  onClick={() => window.open(product.wixUrl, '_blank', 'noopener,noreferrer')}
                   className="w-full bg-tgol-red text-white py-3 px-6 rounded-full hover:bg-tgol-red/90 transition-colors font-semibold"
                 >
                   Buy Now
